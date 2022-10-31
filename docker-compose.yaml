@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  express-metric-1:
+    build: "express-metric-1/"
+    ports:
+      - "5050:5050"
+    environment:
+      - PORT=5050
+      - KEY_JWT=PHIPHUOC
+      - PASSWORD_MONGODB=mvWWPzdqNYJmjWfW
+  express-metric-2:
+    build: "express-metric-2/"
+    ports:
+      - "5051:5051"
+    environment:
+      - PORT=5051
+      - KEY_JWT=PHIPHUOC
+      - PASSWORD_MONGODB=mvWWPzdqNYJmjWfW
+  prometheus-instance:
+    build: "prometheus/"
+    ports:
+      - "9999:9090"
