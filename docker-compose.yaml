@@ -21,10 +21,14 @@ services:
     ports:
       - "9999:9090"
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - type: bind
+        source: ./prometheus/prometheus.yml
+        target: /etc/prometheus/prometheus.yml
+    # volumes:
+    #   - prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
   grafana:
     image: grafana/grafana-enterprise:8.2.0
     ports:
       - 7000:3000
 # volumes:
-#   - ./prometheus.yml:
+#   - prometheus/prometheus.yml:
