@@ -16,12 +16,30 @@ class userController {
       })
       .catch((err) => {
         // console.log("err", err)
-        res.status(200).json({
+        res.status(400).json({
+          err: err,
           success: false,
-          message: "Authen failed"
+          message:
+            "Authen failed qwfuiherwjkqp[erhgjklfwperkfdjs;'qwlekdfjg;s'aldkfjg"
           // err: JSON.stringify(err)
         })
       })
+    // axios
+    //   .get("https://api.coindesk.com/v1/bpi/currentprice.json")
+    //   .then((data) => {
+    //     // console.log("data", data)
+    //     res.status(200).json({ success: true, message: "Send mail ok" })
+    //   })
+    //   .catch((err) => {
+    //     // console.log("err", err)
+    //     res.status(400).json({
+    //       err: err,
+    //       success: false,
+    //       message:
+    //         "Authen failed qwfuiherwjkqp[erhgjklfwperkfdjs;'qwlekdfjg;s'aldkfjg"
+    //       // err: JSON.stringify(err)
+    //     })
+    //   })
   }
 }
 

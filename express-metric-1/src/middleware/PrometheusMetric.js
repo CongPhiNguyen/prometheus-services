@@ -6,8 +6,9 @@ const metricsMiddleware = promBundle({
   includeStatusCode: true,
   includeUp: true,
   customLabels: {
-    project_name: "hello_world",
-    project_type: "test_metrics_labels"
+    project_name: "express-metric-1",
+    project_type: "authen-project",
+    authen: "authen as okekeke"
   },
   promClient: {
     collectDefaultMetrics: {}

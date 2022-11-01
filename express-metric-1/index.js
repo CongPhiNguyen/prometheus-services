@@ -11,7 +11,7 @@ const { metricsMiddleware } = require("./src/middleware/PrometheusMetric.js")
 
 app.use(bodyParser.json({ limit: 10000 }))
 app.use(bodyParser.urlencoded({ extended: true, limit: 10000 }))
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }))
+app.use(cors())
 app.use(cookieParser())
 app.use(express.static("public"))
 app.use(metricsMiddleware)
