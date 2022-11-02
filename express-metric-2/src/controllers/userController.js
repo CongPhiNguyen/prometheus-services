@@ -12,11 +12,14 @@ class userController {
       .get(authenEndpoint + "/authen")
       .then((data) => {
         // console.log("data", data)
-        res.status(200).json({ success: true, message: "Send mail ok" })
+        res
+          .status(200)
+          .json({ success: true, message: "Send mail ok", authenEndpoint })
       })
       .catch((err) => {
         // console.log("err", err)
-        res.status(200).json({
+        res.status(400).json({
+          err: err,
           success: false,
           message: "Authen failed"
           // err: JSON.stringify(err)

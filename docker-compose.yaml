@@ -2,20 +2,35 @@ version: "3.8"
 services:
   express-metric-1:
     build: "express-metric-1/"
+    container_name: authen
     ports:
       - "5050:5050"
     environment:
       - PORT=5050
       - KEY_JWT=PHIPHUOC
       - PASSWORD_MONGODB=mvWWPzdqNYJmjWfW
+    volumes:
+      - type: bind
+        source: ./express-metric-1/src
+        target: /app/src
+    networks:
+      - abc
   express-metric-2:
     build: "express-metric-2/"
+    container_name: sendmail
     ports:
       - "5051:5051"
     environment:
       - PORT=5051
       - KEY_JWT=PHIPHUOC
       - PASSWORD_MONGODB=mvWWPzdqNYJmjWfW
+      - AUTHEN_ENDPOINT_URL=http://host.docker.internal:5050
+    volumes:
+      - type: bind
+        source: ./express-metric-2/src
+        target: /app/src
+    networks:
+      - abc
   prometheus-instance:
     build: "prometheus/"
     ports:
@@ -28,3 +43,6 @@ services:
     image: grafana/grafana-enterprise:8.2.0
     ports:
       - 7000:3000
+networks:
+  abc:
+    driver: bridge
