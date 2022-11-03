@@ -8,7 +8,6 @@ const route = require("./src/routers/index")
 const connectDB = require("./src/config/configDb")
 const PORT = process.env.PORT || 5050
 const { metricsMiddleware } = require("./src/middleware/PrometheusMetric.js")
-
 // app.set("trust proxy", true)
 
 app.use(bodyParser.json({ limit: 10000 }))
@@ -23,3 +22,5 @@ route(app)
 app.listen(PORT, () => {
   console.log("Server is running at port " + PORT)
 })
+
+module.exports = app

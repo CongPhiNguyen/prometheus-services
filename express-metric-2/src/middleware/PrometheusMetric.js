@@ -23,6 +23,16 @@ const getIpFromRequest = (req) => {
   return ips[0].trim()
 }
 
+const logCollection = logCon.model(
+  "log",
+  new mongoose.Schema(
+    {
+      info: {}
+    },
+    { timestamps: true }
+  )
+)
+
 const metricsMiddleware = promBundle({
   includeMethod: true,
   includePath: true,
@@ -32,21 +42,20 @@ const metricsMiddleware = promBundle({
     console.log("req.ip", req.ip)
     console.log("req.ip", getIpFromRequest(req))
     console.log("req.ip", req.connection.remoteAddress)
-    logger.log({
-      level: "info",
-      message: req
-    })
-    const logCollection = logCon.model(
-      "log",
-      new mongoose.Schema(
-        {
-          info: {}
-        },
-        { timestamps: true }
-      )
-    )
+    // logger.log({
+    //   level: "info",
+    //   message: req
+    // })
+
     logCollection.insertMany({
-      info: { ip: req.ip }
+      info: {
+        service: "express-metric-2",
+        ip: req.ip,
+        headers: req.rawHeaders,
+        host: req.get("host"),
+        project_name: "send-mail",
+        project_type: "sendmail to hell"
+      }
     })
     return false
   },
